@@ -10,13 +10,7 @@ public class StatisticsService {
     }
 
     public long calculateMidSum(long[] purchases) {
-        long sum = 0;
-        long midSum = 0;
-        int months = 12;
-        for (long purchase : purchases) {
-            sum += purchase;
-            midSum = sum / months;
-        }
+        long midSum = calculateSum(purchases) / purchases.length;
         return midSum;
     }
 
@@ -45,30 +39,20 @@ public class StatisticsService {
     }
 
     public long findMonthsLowMidSum(long[] purchases) {
-        int monthsLowMidSum = 0;
-        int midSum =0;
-        for (long purchase : purchases) {
-            midSum += purchase;
-        }
-        for (long purchase : purchases) {
-            if (purchase <calculateMidSum(purchases)) {
-                monthsLowMidSum += 1;
+        long monthsLowMidSum = 0;
+        for (long purchase : purchases)
+            if (purchase < calculateMidSum(purchases)) {
+                monthsLowMidSum++;
             }
-        }
         return monthsLowMidSum;
     }
 
     public long findMonthsHighMidSum(long[] purchases) {
-        int monthsLowMidSum = 0;
-        int midSum =0;
-        for (long purchase : purchases) {
-            midSum += purchase;
-        }
-        for (long purchase : purchases) {
-            if (purchase >calculateMidSum(purchases)) {
-                monthsLowMidSum += 1;
+        long monthsHighMidSum = 0;
+        for (long purchase : purchases)
+            if (purchase > calculateMidSum(purchases)) {
+                monthsHighMidSum++;
             }
-        }
-        return monthsLowMidSum;
+        return monthsHighMidSum;
     }
 }
